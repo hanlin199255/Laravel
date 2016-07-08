@@ -1,0 +1,9 @@
+[2016-06-30 18:42:43] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file' in F:\study\www\laravelxm\app\Http\routes.php:22
+Stack trace:
+#0 {main}  
+[2016-06-30 18:42:49] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file' in F:\study\www\laravelxm\app\Http\routes.php:22
+Stack trace:
+#0 {main}  
+[2016-06-30 18:46:15] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN), expecting function (T_FUNCTION)' in F:\study\www\laravelxm\app\Http\Controllers\Admin\IndexController.php:12
+Stack trace:
+#0 {main}  
