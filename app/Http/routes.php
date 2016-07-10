@@ -17,8 +17,22 @@ Route::get('/', function ()
     return view('welcome');
 });
 
+//后台登录页面
+Route::get('/Admin/login','LoginController@login');
+Route::post('/Admin/login','LoginController@dologin');
 
-Route::get("/admin","admin\IndexController@index");
 
+//后台路由组
+Route::group(['middleware' => 'login'],function(){
+
+//后台首页的路由规则
+Route::get("/Admin","AdminController@index");
+
+
+//后台用户管理
+Route::controller('/Admin/user','UserController');
+
+
+});
 
 

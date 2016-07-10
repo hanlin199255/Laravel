@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
      * The application's route middleware.
      *
      * These middleware may be assigned to groups or used individually.
-     *
+     *  这些是特殊的静态常量
      * @var array
      */
     protected $routeMiddleware = [
@@ -49,5 +49,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'login' => \App\Http\Middleware\LoginMiddleware::class,
     ];
 }

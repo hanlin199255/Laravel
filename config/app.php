@@ -204,4 +204,6 @@ return [
 
     ],
 
+    	'webname' => 'NaN码农学院'
+
 ];
