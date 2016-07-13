@@ -23,6 +23,8 @@ class CommonController extends Controller
  			//return redirect("/laravel/public/Admin/login");
  			header("Location:/laravel/public/Admin/login");
  			exit;
+ 		}else{
+ 			//验证权限 当前登录用户是否有操作权限 userData->uid->rule 
  		}
  	}
     

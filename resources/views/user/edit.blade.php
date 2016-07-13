@@ -60,9 +60,9 @@
                             
                                     <legend>基本信息</legend>
                                     <div class="form-group">
-                                       <label class="col-md-2 col-sm-2 control-label">用户名</label>
+                                       <label class="col-md-2 col-sm-2 control-label" >用户名</label>
                                         <div class="col-md-6 col-sm-6">
-                                            <input type="text" placeholder="Username" class="form-control" name="username" value="{{$userInfo->username}}">
+                                            <input type="text" placeholder="Username" class="form-control" name="username"value="{{$userInfo->username}}" disabled >
                                         </div>
                                     </div>
                                     <div class="form-group">

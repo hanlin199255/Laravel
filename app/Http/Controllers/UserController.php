@@ -17,7 +17,8 @@ class UserController extends Controller
 	 */
     public function getAdd()
     {
-    	return view('user.add');
+    	$groups = DB::table('group_rules')->get();
+    	return view('user.add',compact('groups'));
     }
     
     /**
@@ -60,14 +61,14 @@ class UserController extends Controller
     		 * 执行数据库的添加操作
     		 * 利用only提取部分参数
     		 */     	 	  
-    	     $data = $request ->only(['username','password','email','phone','tname','address']);
+    	     $data = $request ->only(['id','username','password','email','phone','tname','address']);
     	     $data['password'] = Hash::make($data['password']);
     	     $data['token'] = str_random(50);   //str_random封装好的函数生成50位的随机字符串
-    	     //dd($data);
-    	     
-    	     
-    		 $res = DB::table('user')->insert($data);
+ 
+    		 $res = DB::table('user')->insertGetId($data);	 
     		 if($res){
+    		 	
+    		 	DB::table('groupaccess')->insert(["uid"=>$res,"group_id"=>$request->get('group_id')]);
     		 	return redirect('Admin/user/index')->with('success','添加成功');  //如果执行成功跳转到用户首页
     		 }else{
     		 	return back()->with('error','添加失败');
@@ -84,18 +85,23 @@ class UserController extends Controller
     * return view() 注意view参数的配置 参数1需要用到的模板
     *                                             参数2需要用到的参数 需要解析的参数都要放进来
     * 此代码对where使用函数进行用户搜索的筛选功能 使用use时为了在闭包里对外层变量$request进行了调用
+    * 
+    * 
+    * 查询用户信息 user user_group关联  left join user.id=user_group.id
     */
     public function getIndex(Request $request)
     {
     	$users = DB::table('user')
+    				->leftjoin('groupaccess',"user.id","=","groupaccess.uid")
     			 	->where(function($query)use($request)   
-    			 	{
-    			 		$query->where('username','like','%'.$request->input('keywords').'%');
-    			 	})
+     			 	{
+    			 		$query->where('user.username','like','%'.$request->input('keywords').'%');
+     			 	})
     				->paginate($request->input("num",5));
     	//dd($users);
-    	
-    	return view('user.index',['users' =>$users,'request'=>$request->all()]);  
+    	//foreach($users as $user){var_dump($user);}
+    	$groups = DB::table("group_rules")->get();
+    	return view('user.index',['users' =>$users,'request'=>$request->all(),'groups' =>$groups ]);  
     	
     }
 
@@ -131,5 +137,117 @@ class UserController extends Controller
     		return back()->with('error','更新失败');
     	}
     }
+    
+    
+    /**
+     * 用户的删除操作
+     */
+    public function getDelete($id){
+    	if(DB::table('user')->where('id',$id)->delete())
+    	{
+    		DB::table('groupaccess')->where('uid',$id)->delete();
+    	return redirect('/Admin/user/index')	->with('success','删除成功');
+    	}else{
+    		return back()->with('error','删除失败');
+    	}
+    }
+    
+    /**
+     * Ajax请求过来修改用户对应分组的功能
+     */
+    public function setgroup(Request $request){
+		
+    	if (false !== DB::table('groupaccess')->where('uid',$request->get('uid'))->update(['group_id'=>$request->get('group_id')]))
+    	{
+    		return response()->json(['status' =>1,'info'=>'修改分组成功']);
+    	}else{
+    		return response()->json(['status' =>0,'info'=>'修改分组失败']);
+    	}
+    	
+    }
+    
+    /**
+     * 用户权限表
+     */
+    public function getGrouplist(Request $request)
+    {	
+    	$group = DB::table('group_rules')->get();
+    	$users_rule = DB::table("user_rule")->get();
+    	return view('user.grouplist',['group' =>$group,'users_rule' =>$users_rule ]);
+    }
+    
+    
+    /**
+     * ajax传参过来修改group权限
+     * 	//查询表group_rules判断添加还是删除权限  返回一个字符串形式 1,2,3
+     * 	//修改表group+rules数据并返回结果
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function grouplimit(Request $request)
+    {
+    	
+    	$res= DB::table('group_rules')->where('id',$request->get('id'))->pluck("rules"); 
+    	//dd($res);
+    	$rule =explode(',', $res[0]);
+    	//dd($rule);
+		if(false != $key =array_search($request->get('rules'),$rule))
+		{
+			unset($rule[$key]);
+		}else{
+			array_push($rule, $request->get('rules'));
+		}
+	
+		if(false !==DB::table('group_rules')->where('id',$request->get('id'))->update(['rules' =>join(",",$rule)]))
+		{
+			
+			return response()->json(["status"=>1,"info"=>"修改权限成功"]);
+		}else{
+			return response()->json(['status' =>0,'info'=>'修改quanxian失败']);
+		}
+    }
+    
+    /**
+     * 启用相应权限显示模板
+     */
+    public function getRuleindex()
+    {
+    	
+    	$rules = DB::table('user_rule')->get();
+    	return view('user.rule',compact('rules'));
+    }
+    
+    public function postRules(Request $request)
+    {
+    	if($request->get('rule') != null){
+    	$rules = join (',',$request->get('rule'));
+    	}else{
+    		return back()->with("error","参数未选中");
+    	}
+    	
+    	//dd($rules);
+    	//dd($request->get("rule"));
+    	//dd($request->get("submit"));
+    	//dd($request->all());
+    	switch ($request->get("submit"))
+    	{
+    		
+    		case "选中有效":
+    		
+    			DB::update("UPDATE user_rule SET status='1' WHERE id in ({$rules})");
+    			break;
+		
+    		case "选中禁用":
+    			DB::update("UPDATE user_rule SET status='0' WHERE id in ({$rules})");
+    			break;
+    			
+    		default:
+    			dd('未定义');
+    	}
+    	return back()->with("success","状态变更成功");
+    	
+    }
+    
+    
     
 }

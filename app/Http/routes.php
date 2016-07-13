@@ -17,10 +17,12 @@ Route::get('/', function ()
     return view('welcome');
 });
 
-//后台登录页面
+//后台登录页面  注意post get 的使用方式
 Route::get('/Admin/login','LoginController@login');
 Route::post('/Admin/login','LoginController@dologin');
-
+Route::get('/Admin/logout','LoginController@logout');
+Route::post('/Admin/user/setgroup','UserController@setgroup');
+Route::post('/Admin/user/grouplimit','UserController@grouplimit');
 
 //后台路由组
 Route::group(['middleware' => 'login'],function(){
@@ -31,7 +33,6 @@ Route::get("/Admin","AdminController@index");
 
 //后台用户管理
 Route::controller('/Admin/user','UserController');
-
 
 });
 

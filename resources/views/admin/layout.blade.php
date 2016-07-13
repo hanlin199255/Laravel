@@ -5,7 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
   <meta name="description" content="">
+  <script src="/laravel/public/admincss/js/jquery-2.0.2.min.js"></script>
   <meta name="author" content="ThemeBucket">
+       
+
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        </script>
+        
   <link rel="shortcut icon" href="#" type="/laravel/public/admincss/image/png">
 
   <title>AdminEx</title>
@@ -37,6 +49,7 @@
   <script src="js/html5shiv.js"></script>
   <script src="js/respond.min.js"></script>
   <![endif]-->
+ 
 </head>
 
 <body class="sticky-header">
@@ -62,7 +75,7 @@
                 <div class="media logged-user">
                     <img alt="" src="/laravel/public/admincss/images/photos/user-avatar.png" class="media-object">
                     <div class="media-body">
-                        <h4><a href="#">John Doe</a></h4>
+                        <h4><a href="{{url('/#')}}">John Doe</a></h4>
                         <span>"Hello There..."</span>
                     </div>
                 </div>
@@ -83,6 +96,8 @@
                     <ul class="sub-menu-list">
                         <li><a href="{{url('/Admin/user/add')}}"> 用户添加</a></li>
                          <li><a href="{{url('/Admin/user/index')}}"> 用户列表</a></li>
+                         <li><a href="{{url('/Admin/user/grouplist')}}"> 用户权限</a></li>
+                         <li><a href="{{url('/Admin/user/ruleindex')}}"> 用户权限</a></li>
                         <li><a href="blog_list.html"> Blog List</a></li>
                     </ul>
                 </li>
@@ -293,14 +308,14 @@
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="/laravel/public/admincss/images/photos/user-avatar.png" alt="" />
-                            John Doe
+                            <img src="/laravel/public/uploads/avartar/user-avatar.png" alt="" />
+                          	   欢迎你：<strong>{{Session::get('username')}}</strong>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                            <li><a href="{{'/laravel/public/Admin/logout'}}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>
                     </li>
 
@@ -385,7 +400,7 @@
 <script src="/laravel/public/admincss/js/calendar/clndr.js"></script>
 <script src="/laravel/public/admincss/js/calendar/evnt.calendar.init.js"></script>
 <script src="/laravel/public/admincss/js/calendar/moment-2.2.1.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<!--  script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script-->
 
 <!--common scripts for all pages-->
 <script src="/laravel/public/admincss/js/scripts.js"></script>

@@ -88,12 +88,7 @@
                                         </div>
                                     </div>
                                     
-                                    <!--  div class="form-group">
-                                        <label class="col-md-2 col-sm-2 control-label">Status</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <textarea rows="5" cols="60" class="form-control"></textarea>
-                                        </div>
-                                    </div-->
+
                                     
                                 </fieldset>
                                 
@@ -112,6 +107,19 @@
                                             <input type="text" placeholder="Mobile" class="form-control" name="tname" value="{{old('tname')}}">
                                         </div>
                                     </div>
+                                    
+                                     <div class="form-group">
+                                      <label class="col-md-2 col-sm-2 control-label">地址</label>
+                                       <div class="col-md-6 col-sm-6">
+                                        <select name="group_id" class="form-control">
+                                        @foreach($groups as $group)
+                                        <option value="{{$group->id}}">{{$group->title}}</option>
+                                        @endforeach
+                                        
+                                        </select>
+                                         </div>
+                                    </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-md-2 col-sm-2 control-label">地址</label>
                                         <div class="col-md-6 col-sm-6">
