@@ -204,6 +204,6 @@ return [
 
     ],
 
-    	'webname' => 'NaN码农学院'
-
+    	'webname' => 'NaN码农学院',
+		'upload_dir' => './upload/'.date('Ymd').'/'
 ];

@@ -203,7 +203,7 @@ class UserController extends Controller
 			
 			return response()->json(["status"=>1,"info"=>"修改权限成功"]);
 		}else{
-			return response()->json(['status' =>0,'info'=>'修改quanxian失败']);
+			return response()->json(['status' =>0,'info'=>'修改权限失败']);
 		}
     }
     

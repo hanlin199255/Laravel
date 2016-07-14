@@ -46,7 +46,7 @@
                                 <th class="col-sm-1">#</th>
                                 <th class="col-sm-1">名称</th>
                                 <th class="col-sm-8" >用户权限</th>
-                                <th class="col-sm-2">操作</th>
+                            
                             </tr>
                             </thead>
                             <tbody>
@@ -66,10 +66,7 @@
                                 	    @endforeach 
                                      </td>
                             
-                                <td class=""><a class="" href="/laravel/public/Admin/user/edit/1">
-												<i class="fa fa-edit"></i>
-												全选
-											</a></td>
+                                
                             </tr>
 						@endforeach
                             </tbody>
@@ -87,7 +84,7 @@
 
   $(function () {
 	    $("table.table input:checkbox").click(function () {
-	        alert($(this).val()+'hahaha');
+	      //  alert($(this).val()+'hahaha');
 	        //发送ajax请求 给该分组添加或者删除权限  有则改之无则加勉
 	        $.ajax({
 	        	

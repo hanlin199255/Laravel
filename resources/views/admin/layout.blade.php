@@ -101,15 +101,26 @@
                         <li><a href="blog_list.html"> Blog List</a></li>
                     </ul>
                 </li>
-                
-               <li class="menu-list"><a href=""><i class="fa  fa-list-ol"></i> <span>分类管理</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>分类管理</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="{{url('/Admin/actype/add')}}"> 分类添加</a></li>
-                         <li><a href="{{url('/Admin/actype/index')}}"> 分类列表</a></li>
+                        <li><a href="{{url('/admin/cate/index')}}"> 分类信息 </a></li>
+                        <li><a href="{{url('/admin/cate/add')}}"> 添加分类 </a></li>
                     </ul>
                 </li>
-                
-                <li><a href="login.html"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>文章管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{url('/admin/article/index')}}"> 基本信息 </a></li>
+                        <li><a href="{{url('/admin/article/add')}}"> 添加文章 </a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-thumbs-o-up"></i> <span>评论</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{url('/admin/comment/index')}}"> 基本信息 </a></li>
+                        <li><a href="{{url('/admin/comment/add')}}"> 添加评论 </a></li>
+                    </ul>
+                </li>
+                <li><a href="{{'/laravel/public/Admin/logout'}}"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
 
             </ul>
             <!--sidebar nav end-->
@@ -308,7 +319,7 @@
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="/laravel/public/uploads/avartar/user-avatar.png" alt="" />
+                            <img src="/laravel/public/upload/avartar/user-avatar.png" alt="" />
                           	   欢迎你：<strong>{{Session::get('username')}}</strong>
                             <span class="caret"></span>
                         </a>
@@ -324,21 +335,38 @@
             <!--notification menu end -->
         </div>  
         <!-- header section end-->
-        
-        @if(session('success'))
-        <div class="alert alert-success">
-                <ul class="margin-bottom-none padding-left-lg">
-                    <li>{{session('success')}}</li>
-                </ul>
-		</div>
-		@endif
+          @if(session('success'))
+        <section class="panel">
+                <div class="panel-body">
+                        <!--statistics start-->
+                    <div class="alert alert-success alert-block fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <h4>
+                            <i class="icon-ok-sign"></i>
+                        </h4>
+                        <p>{{session('success')}}</p>
+                    </div>
+                </div>
+            <section>
+       	@endif
+       
+
 		
 		@if(session('error'))
-        <div class="alert alert-danger">
-                <ul class="margin-bottom-none padding-left-lg">
-                    <li>{{session('error')}}</li>
-                </ul>
-		</div>
+		 <section class="panel">
+                <div class="panel-body">
+                        <!--statistics start-->
+                    <div class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <strong></strong>{{session('error')}}
+                    </div>
+                </div>
+            </section>
+
 		@endif
 		
          @yield('contents')

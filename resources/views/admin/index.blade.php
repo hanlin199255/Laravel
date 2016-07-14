@@ -1,22 +1,20 @@
  @extends('/admin/layout') 
  @section('contents') 
+
        <!-- header section end-->
-         <div class="page-heading">
-         @section('breadcrumb') <!-- 对列表进行显示-->
+         <div class="page-heading">  
             <h3>
-                Dashboard
+              	  AdminEX
             </h3>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="{{ url('/admin') }}">主页</a>
                 </li>
                 <li>
                     <a href="#">日期表</a>
                 </li>
                 <li class="active"> 动态列表 </li>
-        @show
             </ul>
-        
             <div class="state-info">
                 <section class="panel">
                     <div class="panel-body">

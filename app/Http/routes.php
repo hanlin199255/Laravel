@@ -17,6 +17,13 @@ Route::get('/', function ()
     return view('welcome');
 });
 
+//前台管理页面
+Route::Controller('/home/index','Home\IndexController');
+Route::Controller('/home/blog','Home\BlogController');
+Route::Controller('/home/center','Home\CenterController');
+
+
+
 //后台登录页面  注意post get 的使用方式
 Route::get('/Admin/login','LoginController@login');
 Route::post('/Admin/login','LoginController@dologin');
@@ -24,16 +31,23 @@ Route::get('/Admin/logout','LoginController@logout');
 Route::post('/Admin/user/setgroup','UserController@setgroup');
 Route::post('/Admin/user/grouplimit','UserController@grouplimit');
 
+
+
 //后台路由组
 Route::group(['middleware' => 'login'],function(){
 
 //后台首页的路由规则
-Route::get("/Admin","AdminController@index");
+Route::get('/Admin','AdminController@index');
 
 
 //后台用户管理
-Route::controller('/Admin/user','UserController');
+Route::Controller('/Admin/user','UserController');
 
+//后台分类管理路由
+Route::Controller('/admin/cate','CateController');
+
+//后台文章
+Route::Controller('/admin/article','ArticleController');
 });
 
 
