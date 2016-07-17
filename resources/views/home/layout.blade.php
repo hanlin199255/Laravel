@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>{{config('app.webname')}}</title>
 
 <link href='http://fonts.useso.com/css?family=Oxygen|Lato:300|Open+Sans:300' rel='stylesheet' type='text/css'>
 
@@ -13,7 +13,8 @@
     <link href="{{url('/home/css/font-awesome.min.css')}}" rel="stylesheet">
     
     <link href="{{url('/home/css/animate-custom.css')}}" rel="stylesheet">
-    
+         <script src="{{ url('/home/jquery.js') }}"></script>
+     <script src="{{ url('/home/jquery-1.8.3.min.js') }}"></script>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="http://ajax.useso.com/ajax/libs/jquery/1.7/jquery.js"></script>
@@ -25,11 +26,12 @@
     <script src="{{url('/home/js/modernizr.custom.js')}}"></script>
     
     <script src="{{url('/home/js/jquery.dlmenu.js')}}"></script>
-    
+    <link rel="shortcut icon" href="{{url('/home/images/favicon.ico')}}" />
     <!-- jQuery (portfolio) -->
     <!--<script src="js/isotope.js"></script>
     <script src="js/fancybox.js"></script>-->
-    
+
+
     @yield('style')
     <!-- css meta引入 -->
     @show
@@ -51,7 +53,7 @@
                   <li class="active"><a href="{{url('/home/index')}}">主页</a></li>
                   <li><a href="{{url('/home/index/aboutus')}}">关于我们</a></li>
                   <li><a href="{{url('/home/center')}}">个人中心</a></li>   
-                  <li><a href="{{url('/home/blog')}}">博客</a></li>
+                  <li><a href="{{url('/list')}}">博客</a></li>
                   <li><a href="{{url('/home/index/screen')}}">精选博文</a></li>      
                   <li><a href="{{url('/home/index/team')}}">NaN Team</a></li>
                   <li><a href="{{url('/home/index/contact')}}">联系我们</a></li>
@@ -73,7 +75,7 @@
 							<a href="{{url('/home/center')}}">个人中心</a>
 							</li>   
 							<li>
-								<a href="{{url('/home/blog')}}">博客</a>
+								<a href="{{url('/list')}}">博客</a>
 							</li>
                             <li>
 								<a href="{{url('/home/index/screen')}}">精选博文</a>
@@ -292,7 +294,7 @@
 	</script>
 
    @yield('script')
-   <!-- JS引入 -->
+   <!-- JS引入 --> 
    @show
    
 </body>

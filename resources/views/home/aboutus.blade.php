@@ -1,6 +1,6 @@
 @extends('home/layout');
 @section('page')
-About us
+关 于 我 们
 @endsection
 
 @section('contents')

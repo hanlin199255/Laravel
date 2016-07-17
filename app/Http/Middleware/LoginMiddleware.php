@@ -16,9 +16,12 @@ class LoginMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {	
+    	//$refer = $_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : ' ';
     	if(!session('id'))
     	{
+    		//$url = url('/Admin/login').'?redirect='.$refer;
+    
     		return redirect('/Admin/login')->with('error','用户未登录');
     	 
     	}else{
@@ -43,6 +46,7 @@ class LoginMiddleware
     		foreach($rule as $v){
     		if(!in_array($rule[0], explode(",",$rules[0])) && $rule[0])
     		{
+    			
     			return redirect('/Admin')->with("error","您没有相关权限");
     		}
     		}

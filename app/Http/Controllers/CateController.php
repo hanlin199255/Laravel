@@ -167,7 +167,12 @@ class CateController extends Controller
         }
     }
 
-	
-    
+	/**
+	 * 获取顶级分类  使用static变成静态快速获取  可以不创建对象就可以在外部使用它
+	 */
+    public static function getTopCate()
+    {
+    	return DB::table('cates')	->where('pid',0)->get();
+    }
     
 }

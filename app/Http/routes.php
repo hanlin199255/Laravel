@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Routing\Console\MiddlewareMakeCommand;
 /*
 |--------------------------------------------------------------------------
 | Application Routes   HL
@@ -19,10 +20,10 @@ Route::get('/', function ()
 
 //前台管理页面
 Route::Controller('/home/index','Home\IndexController');
-Route::Controller('/home/blog','Home\BlogController');
 Route::Controller('/home/center','Home\CenterController');
-
-
+Route::get('/blog/{id}','Home\BlogController@blogshow');
+Route::get('/list','Home\BlogController@listshow');
+Route::post('/comment/insert','Home\CommentController@insert');
 
 //后台登录页面  注意post get 的使用方式
 Route::get('/Admin/login','LoginController@login');

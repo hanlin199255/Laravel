@@ -49,6 +49,7 @@
             <input type="text" name="username" class="form-control" placeholder="请输入用户名" autofocus >
             <input type="password" name="password" class="form-control" placeholder="请输入用户密码">           
 			{{csrf_field()}}
+
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>
             </button>

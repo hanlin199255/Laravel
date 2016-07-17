@@ -31,7 +31,7 @@
     <script src="{{ url('/home/js/modernizr.custom.js') }}"></script>
     
     <script src="{{ url('/home/js/jquery.dlmenu.js') }}"></script>
-    
+    <link rel="shortcut icon" href="{{url('/home/images/favicon.ico')}}" />
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                   <li class="active"><a href="{{url('/home/index')}}">主页</a></li>
                   <li><a href="{{url('/home/index/aboutus')}}">关于我们</a></li>
                   <li><a href="{{url('/home/center')}}">个人中心</a></li>   
-                  <li><a href="{{url('/home/blog')}}">登入博客</a></li>
+                  <li><a href="{{url('/list')}}">博客</a></li>
                   <li><a href="{{url('/home/index/screen')}}">精选博文</a></li>
                   <li><a href="{{url('/home/index/team')}}">NaN Team</a></li>
                   <li><a href="{{url('/home/index/contact')}}">联系我们</a></li>
@@ -71,7 +71,7 @@
 								<a href="{{url('/home/center')}}">个人中心</a>
 							</li>
 							<li>
-								<a href="{{url('/home/blog')}}">博客</a>
+								<a href="{{url('/list')}}">博客</a>
 							</li>
                             <li>
 								<a href="{{url('/home/index/screen')}}">精选博文</a>

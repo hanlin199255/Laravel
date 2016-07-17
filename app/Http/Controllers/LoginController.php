@@ -20,6 +20,7 @@ use App\Http\Requests\LoginRequest;
 
 
 
+
 class LoginController extends Controller
 {
     /**
@@ -28,6 +29,7 @@ class LoginController extends Controller
 	public function login(){
 		
 		return view('admin.login');
+	
 	}
 	
 	/**
@@ -63,7 +65,8 @@ class LoginController extends Controller
 				\Cookie::queue('auth_user',$auth_user,60*24*30);
 				
 			}
-			
+			$url = $request->input('redirect','');
+		
 			return redirect('/Admin')->with('success','登录成功');
 			
 		}else{
