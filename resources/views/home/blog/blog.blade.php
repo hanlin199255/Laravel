@@ -70,7 +70,7 @@
                                     <div class="header-wrapper">
                                         <h2 class="posttitle"><a href="{{url('/blog')}}/{{$v->id}}">{{$v->title}}</a></h2>
                                         <div class="entry-utility">
-                                            <div class="user">作者: <a href="#">{{$v->tname}}</a></div> <div class="tag">Tags: <a href="{{url('/list/')}}?cate={{$v->cate_id}}">{{$v->catename}}</a></div>
+                                            <div class="user">作者: <a href="{{url('/list')}}?user={{$v->user_id}}">{{$v->tname}}</a></div> <div class="tag">Tags: <a href="{{url('/list/')}}?cate={{$v->cate_id}}">{{$v->catename}}</a></div>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
@@ -114,10 +114,18 @@
                             <li class="widget-container">
                                 <h2 class="widget-title">文章分类</h2>
                                 <ul>
-                                @foreach($cates as $v)
-                                    <li><a href="{{url('/list')}}?cate={{$v->id}}">{{$v->name}}</a></li>
+                                @foreach($allcates as $v)
+                                <li><a href="{{url('/list')}}?cate={{$v->id}}">{{$v->name}}</a></li>
+<!--                                 @foreach($v->sub as $val) -->
+<!--                                  <li><a href="{{url('/list')}}?cate={{$val->id}}">--x--x--{{$val->name}}</a></li> -->
+<!--                                 @foreach($val->sub as $vv)    -->
+<!--                                     <li><a href="{{url('/list')}}?cate={{$vv->id}}">---x---x---x---{{$vv->name}}</a></li> -->
+<!--                                 @endforeach -->
+<!--                             	@endforeach  -->
                                 @endforeach
+
                                 </ul>
+                                
                             </li>
                             
                             <li class="widget-container">

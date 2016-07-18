@@ -60,7 +60,7 @@
 
 
 @section('page')
-精 选 博 文
+博 文 分 类
 @endsection
 
 @section('contents')
@@ -76,179 +76,41 @@
                         <section class="content">
                             
                             <!-- Begin Portfolio Nav -->
-                            <div id="frame-filter">
+ 							<div id="frame-filter">
                             <ul id="filter">
-                                <li class="current"><a href="#" data-filter="*">all categories</a><span></span></li>
-                                <li><a href="#" data-filter=".wordpress">wordpress</a><span></span></li>
-                                <li><a href="#" data-filter=".design">design</a><span></span></li>
-                                <li><a href="#" data-filter=".photography">photography</a><span></span></li>
+                                <li class="current"><a href="#" data-filter="*">全部分类</a><span></span></li>
+                       
+                                @foreach($allcates as $v)
+                                <li><a href="{{url('/list')}}?cate={{$v->id}}" data-filter=".{{$v->name}}">{{$v->name}}</a><span></span></li>
+                                @endforeach
+                            
                             </ul> 
                             <div class="clear"></div>
                             </div> 
                             <!-- End Portfolio Nav -->    
-                              
-                            <!-- Begin Portfolio Items -->
+                                     
+                        <!-- Begin Portfolio Items -->
                             <div id="ts-display" class="row">
-                                    <div class="one_fourth columns item wordpress">
+                              @foreach($allcates as $v)
+                              @foreach($v->sub as $vv)
+                              @foreach($vv->sub as $vvv)
+                                    <div class="one_fourth columns item {{$v->name}}">
                                         <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf1.gif')}}" data-rel="prettyPhoto[mixed]" >
+                                            <a class="image" href="{{$vvv->pic}}" data-rel="prettyPhoto[mixed]" >
                                             <span class="rollover"></span>
                                             <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf1.gif')}}" alt=""/>
+                                            <img src="{{$vvv->pic}}" alt=""/>
                                             </a>							
                                         </div>
                                         <div class="ts-display-pf-text">
-                                            <h2><a href="#">The Thirsty Goat</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi.  </span>
+                                            <h2><a href="{{url('/list')}}?cate={{$vvv->id}}">{{$vvv->name}}</a></h2>
+                                            <span>{{$vvv->descr}} </span>
                                         </div>
                                         <div class="ts-display-clear"></div>
                                     </div>
-                                    <div class="one_fourth columns item design">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf2.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf2.gif')}}" alt=""/>	</a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Koala Safari</a></h2>
-                                             <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi.  </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-            
-                                    <div class="one_fourth columns item wordpress">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf3.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf3.gif')}}" alt=""/></a>						
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Ivory Garden</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi.  </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-            
-                                    <div class="one_fourth columns item photography">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf4.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf4.gif')}}" alt=""/>	</a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Workband</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item design">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf5.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf5.gif')}}" alt=""/>	</a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Door to Door Services</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item wordpress">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf6.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf6.gif')}}" alt=""/>	</a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Who is it</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    
-                                    <div class="one_fourth columns item photography">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf7.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf7.gif')}}" alt=""/>	</a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Bike to Work</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item design">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf8.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf8.gif')}}" alt=""/>	</a>				
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Amazing Theme</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item wordpress">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf9.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf9.gif')}}" alt=""/></a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Goldpixel</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item photography">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf10.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf10.gif')}}" alt=""/>	</a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Bike to Work</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item design">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf11.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf11.gif')}}" alt=""/>	</a>				
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Amazing Theme</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
-                                    <div class="one_fourth columns item wordpress">
-                                        <div class="ts-display-pf-img">
-                                            <a class="image" href="{{url('/home/images/content/pf/pf12.gif')}}" data-rel="prettyPhoto[mixed]" >
-                                            <span class="rollover"></span>
-                                            <span class="zoom"></span>
-                                            <img src="{{url('/home/images/content/pf/pf12.gif')}}" alt=""/></a>					
-                                        </div>
-                                        <div class="ts-display-pf-text">
-                                            <h2><a href="#">Goldpixel</a></h2>
-                                            <span>Suspendisse dui sem, ullamcorper eu imperdiet eu, dapibus nisi. </span>
-                                        </div>
-                                        <div class="ts-display-clear"></div>
-                                    </div>
+                                 @endforeach 
+                                 @endforeach  
+                                 @endforeach 
                             </div>
                             <!-- End Portfolio Items -->
                             

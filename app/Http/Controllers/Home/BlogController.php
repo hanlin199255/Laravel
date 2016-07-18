@@ -51,7 +51,9 @@ class BlogController extends Controller
    		 * 获取顶级分类  从catecontroller获取
    		 * @return Ambigous <\Illuminate\View\View, \Illuminate\Contracts\View\Factory, mixed, \Illuminate\Foundation\Application, \Illuminate\Container\static>
    		 */
+   		
    		$cates = CateController::getTopcate();
+   		
    		//dd($cates);
    		
    		/**
@@ -96,25 +98,39 @@ class BlogController extends Controller
    					{
    						if($request->has('cate'))
    						{
-   							$query->where('cate_id',$request->input('cate'));
+   							$query->where('path','like','%'.','.$request->input('cate').'%')
+   									   ->orwhere('cate_id',$request->input('cate'));
    						}
-   						//搜索条件查询
-   						if($request->has('keyword')){
+   						if($request->has('user'))
+   						{
+   							$query->where('user_id',$request->input('user'));
+   						}
+   					
+   						if($request->has('keyword')){					//搜索条件查询
    							$query->where('title','like','%'.$request->input('keyword').'%')
-   									  ->orwhere('content','like','%'.$request->input('keyword').'%');
+   									  ->orwhere('content','like','%'.$request->input('keyword').'%')
+   									  ->orwhere('tname','like','%'.$request->input('keyword').'%');
    						}
    					})
    					->select('article.*','user.tname','cates.name as catename')
    					->leftjoin('user','user.id','=','article.user_id')
    					->join('cates','cates.id','=','article.cate_id')
    					->orderby('id','desc')->paginate(2);
-   		//dd($article);
+   		
+   				
    		$cates = CateController::getTopcate();
+   		
+   		
    		$recs = DB::table('article')->where('rec','1')->orderBy('id','desc')->limit(3)->get();
+   		
+   		$allcates = CateController::getCatesByPid(0);
+   		//dd($allcates);
+   		
    		return view('home.blog.blog',
    				['article'=>$article,
    				'cates'=>$cates,
    				'recs'=>$recs,
+   				'allcates'=>$allcates,
    				'request'=>$request->all()    //切记此处要加此参数保证分页不出错,条件筛选时
 				]);
    	}

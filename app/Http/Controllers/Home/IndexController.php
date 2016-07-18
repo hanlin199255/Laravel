@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
+
+use DB;
 
 class IndexController extends Controller
 {
@@ -29,10 +32,8 @@ class IndexController extends Controller
    	return view('home.contact');
    }
    
-   public function getScreen()
-   {
-   	return view('home.screen');
-   }
+
+
    
    
 }

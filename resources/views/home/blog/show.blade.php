@@ -80,7 +80,7 @@
                                     <div class="header-wrapper">
                                         <h2 class="posttitle"><a>{{$article->title}}</a></h2>
                                         <div class="entry-utility">
-                                            <div class="user">作者笔名: <a href="#">{{$article->tname}}</a></div> <div class="tag">分类: <a href="{{url('/list/')}}?cate={{$article->cate_id}}">{{$article->catename}}</a></div>
+                                            <div class="user">作者笔名: <a href="{{url('/list')}}?user={{$article->user_id}}">{{$article->tname}}</a></div> <div class="tag">分类: <a href="{{url('/list/')}}?cate={{$article->cate_id}}">{{$article->catename}}</a></div>
                                         </div>
                                     </div>
                                     <div class="clear"></div>

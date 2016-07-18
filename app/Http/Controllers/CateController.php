@@ -27,7 +27,7 @@ class CateController extends Controller
         $data = [];
         foreach ($cates as $key => $value) {
             if($value['pid'] == $pid){
-                $value['sub'] = self::getCatesByPidArr($vates, $value['id']);
+                $value['sub'] = self::getCatesByPidArr($cates, $value['id']);
                 $data[] =$value;
             }
         }
@@ -109,6 +109,8 @@ class CateController extends Controller
     {
         //调用获取的方法
         $cates = self::getCates();
+        
+        
         return view('admin.cate.index',['cates'=>$cates]);
     }
 
@@ -165,6 +167,23 @@ class CateController extends Controller
         } else {
             return back()->with('error','删除失败!');
         }
+    }
+    
+    /**
+     * 前台页面分类的遍历
+     */
+    public static function getCatesByPid($pid)
+    {
+    	$res = DB::table('cates')
+    			->where('pid','=',$pid)
+    			->get();
+    	$data = [];
+    	foreach($res as $k=>$v)
+    	{
+    		$v->sub = self::getCatesByPid($v->id);
+    		$data[]=$v;
+    	}
+    	return $data;
     }
 
 	/**
