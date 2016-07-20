@@ -40,7 +40,7 @@
     <div class="container">
     	<div class="header pull-left">
         	
-            <a href="index.html" class="logo"><img src="{{ url('/home/img/logo.png') }}" alt="logo" /></a>
+            <a href="{{url('/home/index')}}" class="logo"><img src="{{ url('/home/img/logo.png') }}" alt="logo" /></a>
             
             <nav class="navbar navbar-default pull-right" role="navigation">
  
@@ -138,70 +138,26 @@
             </div>
             
             
-            <div class="row">
-                	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    	<div class="services-box services-box-1">
-                        	<div class="row">
-                            	<div class="col-lg-3">
-                                	<img src="{{ url('/home/img/s-desktop.png') }}" alt="s-desktop" />
-                                </div>
-                                <div class="col-lg-9">
-                                	<div class="services-dtls">
-                                    	<h2>平台设计</h2>
-                                        <p>我们创建了网页端，安卓，IOS三个平台应用</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+              @foreach($allcates as $v)
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     	<div class="services-box services-box-2 pull-right">
-                        	<div class="row">
+                        	<div class="row">	
+                        	<a href="#">
                             	<div class="col-lg-3">
-                                	<img src="{{ url('/home/img/colors.png') }}" alt="s-desktop" />
+                                	<img src="{{$v->pic }}" alt="s-desktop" />
                                 </div>
                                 <div class="col-lg-9">
                                 	<div class="services-dtls">
-                                    	<h2>平台设计</h2>
-                                        <p>我们创建了网页端，安卓，IOS三个平台应用</p>
+                                    	<h2>{{$v->name}}</h2>
+                                        <p>{{$v->descr}}</p>
                                     </div>
                                 </div>
+                               </a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    	<div class="services-box services-box-1">
-                        	<div class="row">
-                            	<div class="col-lg-3">
-                                	<img src="{{ url('/home/img/experience.png') }}" alt="s-desktop" />
-                                </div>
-                                <div class="col-lg-9">
-                                	<div class="services-dtls">
-                                    	<h2>平台设计</h2>
-                                        <p>我们创建了网页端，安卓，IOS三个平台应用</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    	<div class="services-box services-box-2 pull-right">
-                        	<div class="row">
-                            	<div class="col-lg-3">
-                                	<img src="{{ url('/home/img/s-easy.png') }}" alt="s-desktop" />
-                                </div>
-                                <div class="col-lg-9">
-                                	<div class="services-dtls">
-                                    	<h2>平台设计</h2>
-                                        <p>我们创建了网页端，安卓，IOS三个平台应用</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-             </div>
+             @endforeach
             
             
         </div><!-- End services -->
@@ -217,39 +173,45 @@
    
    <div id="container">
    
- 
+ <?php $i=0 ?> 
    <ul class="gellary-content bxslider">
-   		
+   	@foreach($user as $val)
+      <?php ++$i ?> 
+          @if($i%2 != 0)
+        <li class="als-item">
+        <div class="gellary-item item">
+        	<a href="{{url('/list')}}?user={{$val->id}}">
+            <img src="{{$val->avartar}}"  height="246" width="389"/>
+            <div class="hover"></div>
+            </a>
+            <h3>{{$val->tname}}</h3>
+        </div>
+        @else
+        <div class="gellary-item item">
+            <a href="{{url('/list')}}?user={{$val->id}}">
+            <img src="{{$val->avartar}}" height="246" width="389"/>
+            <div class="hover"></div>
+            </a>
+            <h3>{{$val->tname}}</h3>
+        </div>
+        </li>
+        @endif
+        @endforeach
+        
         <li class="als-item">
         <div class="gellary-item item">
         	<a href="#">
-            <img src="{{ url('/home/img/r-pic-1.jpg') }}" src="pic-1" />
+            <img src="{{ url('/home/img/r-pic-2.jpg') }}" src="pic-2" />
             <div class="hover"></div>
             </a>
-            <h3>视频</h3>
+            <h3>感谢！</h3>
         </div>
         <div class="gellary-item item">
-            <a href="#">
+        	<a href="#">
             <img src="{{ url('/home/img/r-pic-3.jpg') }}" src="pic-3" />
             <div class="hover"></div>
             </a>
-            <h3>PSD下载</h3>
-        </div>
-        </li>
-        <li class="als-item">
-        <div class="gellary-item item">
-        	<a href="#">
-            <img src="{{ url('/home/img/r-pic-2.jpg') }}" src="pic-2" />
-            <div class="hover"></div>
-            </a>
-            <h3>感谢！</h3>
-        </div>
-        <div class="gellary-item item">
-            <a href="#">
-            <img src="{{ url('/home/img/r-pic-2.jpg') }}" src="pic-2" />
-            <div class="hover"></div>
-            </a>
-            <h3>感谢！</h3>
+            <h3>PSD 下载</h3>
         </div>
         </li>
         <li class="als-item">
@@ -268,22 +230,7 @@
             <h3>某网站</h3>
         </div>
         </li>
-        <li class="als-item">
-        <div class="gellary-item item">
-        	<a href="#">
-            <img src="{{ url('/home/img/r-pic-4.jpg') }}" src="pic-4" />
-            <div class="hover"></div>
-            </a>
-            <h3>唤醒区域</h3>
-        </div>
-        <div class="gellary-item item">
-            <a href="#">
-            <img src="{{ url('/home/img/r-pic-7.jpg') }}" src="pic-7" />
-            <div class="hover"></div>
-            </a>
-            <h3>Pixelarena</h3>
-        </div>
-        </li>
+
         <li class="als-item">
         <div class="gellary-item item">
         	<a href="#">
@@ -332,55 +279,6 @@
             <h3>唤醒区域</h3>
         </div>
         </li>
-        <li class="als-item">
-        <div class="gellary-item item">
-            <a href="#">
-            <img src="{{ url('/home/img/r-pic-8.jpg') }}" src="pic-8" />
-            <div class="hover"></div>
-            </a>
-            <h3>Care.com</h3>
-        </div>
-        <div class="gellary-item item">
-        	<a href="#">
-            <img src="{{ url('/home/img/r-pic-3.jpg') }}" src="pic-3" />
-            <div class="hover"></div>
-            </a>
-            <h3>PSD Download</h3>
-        </div>
-        </li>
-        <li class="als-item">
-        <div class="gellary-item item">
-            <a href="#">
-            <img src="{{ url('/home/img/r-pic-2.jpg') }}" src="pic-2" />
-            <div class="hover"></div>
-            </a>
-            <h3>Thankyou!</h3>
-        </div>
-        <div class="gellary-item item">
-        	<a href="#">
-            <img src="{{ url('/home/img/r-pic-2.jpg') }}" src="pic-2" />
-            <div class="hover"></div>
-            </a>
-            <h3>Thankyou!</h3>
-        </div>
-        </li>
-        <li class="als-item">
-        <div class="gellary-item item">
-            <a href="#">
-            <img src="{{ url('/home/img/r-pic-3.jpg') }}" src="pic-3" />
-            <div class="hover"></div>
-            </a>
-            <h3>PSD Download</h3>
-        </div>
-        <div class="gellary-item item">
-        	<a href="#">
-            <img src="{{ url('/home/img/r-pic-1.jpg') }}" src="pic-1" />
-            <div class="hover"></div>
-            </a>
-            <h3>Acorn Video</h3>
-        </div>
-        </li>
-   
    
    </ul><!-- End gellary -->
   
@@ -392,7 +290,7 @@
    
         <div class="process">
 			
-            <h2>进程</h2>
+            <h2>progress</h2>
             
             <div class="row">
             
@@ -450,100 +348,106 @@
    <div class="recent-post">
    
    		<div class="container">
-        	<h2>Recent Post</h2>
-            
+        	<h2>热门文章</h2>
+        	
             <div class="row">
-            
+            <?php $k=0; ?>
+            @foreach($article as $article)
+            	@if(++$k== 1)
             	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 	<div class="r-post not-right-bdr">
                     	<div class="r-post-img">
-                    		<img src="{{ url('/home/img/blog01.jpg') }}" alt="blog01" />
+                    		<a href="{{url('/blog')}}/{{$article->id}}"><img src="{{ url('/home/img/image1.jpg') }}" alt="blog01" /></a>
                             <div class="date-stamp">
-                            	<div class="day">02</div>
-                                <div class="month">july</div>
-                                <div class="year">2013</div>
+                            	<div class="day">{{substr($article->created_at,8,2)}}</div>
+                                <div class="month">{{substr($article->created_at,5,2)}}</div>
+                                <div class="year">{{substr($article->created_at,0,4)}}</div>
                             </div>
-                    	</div>
-                        
-                        <h3>看看我们写吗</h3>
+                    	</div> 
+                    	<h3><a href="{{url('/blog')}}/{{$article->id}}" style="color: white">{{$article->title}}</a></h3>
+
                         
                         <ul class="post-by">
-                            <li><a href="#">dona</a></li>
-                            <li><a href="#">Demo Posts</a></li>
+                              <li><a href="{{url('/list')}}?user={{$article->user_id}}">{{$article->tname}}</a></li>                      
+                              <li><a  style="color:#ffd440" >Tags　</a><a href="{{url('/list')}}?cate={{$article->cate_id}}">{{$article->catename}}</a></li>
+                       
                         </ul>
                         
-                        <p>一批纺织样品把摊放在桌上,Samsa是一个旅行推销员,上面挂着一幅画,他最近的一本带插图的杂志和安置在一个镀金的框架。</p>
+                        <p>{{mb_substr(strip_tags($article->content),0,66)}}</p>
                         
                     </div>
                 </div>
-                
+           
+            
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                
+                @elseif($k ==2)  
                 	<div class="r-post not-right-bdr top20">
                     	<div class="r-post-img">
-                    		<img src="{{ url('/home/img/blog02.jpg') }}" alt="blog02" />
+                    		<a href="{{url('/blog')}}/{{$article->id}}"><img src="{{ url('/home/img/image2.jpg') }}" alt="blog02" /></a>
                             <div class="date-stamp">
-                            	<div class="day">02</div>
-                                <div class="month">july</div>
-                                <div class="year">2013</div>
+                            	<div class="day">{{substr($article->created_at,8,2)}}</div>
+                                <div class="month">{{substr($article->created_at,5,2)}}</div>
+                                <div class="year">{{substr($article->created_at,0,4)}}</div>
                             </div>
                     	</div>
-                        
+                       <h4><a href="{{url('/blog')}}/{{$article->id}}" style="color: white">{{$article->title}}</a></h4>
                         <ul class="post-by">
-                            <li><a href="#">dona</a></li>
-                            <li><a href="#">Demo Posts</a></li>
+                            <li><a href="{{url('/list')}}?user={{$article->user_id}}">{{$article->tname}}</a></li>                      
+                            <li><a  style="color:#ffd440" >Tags　</a><a href="{{url('/list')}}?cate={{$article->cate_id}}">{{$article->catename}}</a></li>
                         </ul>
                         
                         
                     </div><!-- r-post -->
-                	
+       		@elseif($k ==3)	
                 	<div class="r-post not-right-bdr top20 pull-left">
+                		
                     	<div class="r-post-img">
-                    		<img src="{{ url('/home/img/blog03.jpg') }}" alt="blog03" />
+                    		<a href="{{url('/blog')}}/{{$article->id}}"><img src="{{ url('/home/img/image3.jpg') }}" alt="blog03" /></a>
                             <div class="date-stamp">
-                            	<div class="day">02</div>
-                                <div class="month">july</div>
-                                <div class="year">2013</div>
+                            	<div class="day">{{substr($article->created_at,8,2)}}</div>
+                                <div class="month">{{substr($article->created_at,5,2)}}</div>
+                                <div class="year">{{substr($article->created_at,0,4)}}</div>
                             </div>
                     	</div>
-                        
+                    	<h4><a href="{{url('/blog')}}/{{$article->id}}" style="color: white">{{$article->title}}</a></h4>
                         <ul class="post-by">
-                            <li><a href="#">dona</a></li>
-                            <li><a href="#">Demo Posts</a></li>
+                            <li><a href="{{url('/list')}}?user={{$article->user_id}}">{{$article->tname}}</a></li>                      
+                              <li><a  style="color:#ffd440" >Tags　</a><a href="{{url('/list')}}?cate={{$article->cate_id}}">{{$article->catename}}</a></li>
                         </ul>
-                        
-                        
                     </div><!-- r-post -->
                 
                 
                 </div>
-                
+            @elseif($k ==4 )    	
                 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                	
+            
                     <div class="r-post not-right-bdr top20">
                     	<div class="r-post-img">
-                    		<img src="{{ url('/home/img/blog02.jpg') }}" alt="blog02" />
+                    	<a href="{{url('/blog')}}/{{$article->id}}"><img src="{{ url('/home/img/image4.jpg') }}" alt="blog04" /></a>
                             <div class="date-stamp">
-                            	<div class="day">02</div>
-                                <div class="month">july</div>
-                                <div class="year">2013</div>
+                            	<div class="day">{{substr($article->created_at,8,2)}}</div>
+                                <div class="month">{{substr($article->created_at,5,2)}}</div>
+                                <div class="year">{{substr($article->created_at,0,4)}}</div>
                             </div>
                     	</div>
                         
                         <ul class="post-by">
-                            <li><a href="#">dona</a></li>
-                            <li><a href="#">Demo Posts</a></li>
+                            <li><a href="{{url('/list')}}?user={{$article->user_id}}">{{$article->tname}}</a></li>                      
+                             <li><a  style="color:#ffd440" >Tags　</a><a href="{{url('/list')}}?cate={{$article->cate_id}}">{{$article->catename}}</a></li>
                         </ul>
                         
-                        <h3>看看我们写吗</h3>
+                        <h3><a href="{{url('/blog')}}/{{$article->id}}" style="color: white">{{$article->title}}</a></h3>
                         
-                        
-                        <p>一批纺织样品把摊放在桌上,Samsa是一个旅行推销员,上面挂着一幅画,他最近的一本带插图的杂志和安置在一个镀金的框架。</p>
+                    
+                        <p>{{mb_substr(strip_tags($article->descr),0,66)}}</p>
                         
                     </div><!-- r-post -->
-                    
+              
+              	 
                 </div>
-            
+                	 @endif        
+              	 @endforeach
+         
             </div>
             
         </div>

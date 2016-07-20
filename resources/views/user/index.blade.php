@@ -9,7 +9,7 @@
  <!-- page heading start-->
         <div class="page-heading">
             <h3>
-                Form Wizard
+                	用户列表	
             </h3>
             <ul class="breadcrumb">
                 <li>
@@ -34,27 +34,27 @@
 				<div class="panel-body">
 					<div class="adv-table editable-table ">
 						<div class="clearfix">
-							<div class="btn-group">
-								<button class="btn btn-primary" id="editable-sample_new">
+							<div class="btn-group pull-right">
+								<a href="{{url('/Admin/user/add')}}"><button class="btn btn-primary" id="editable-sample_new">
 									添加用户
 									<i class="fa fa-plus"></i>
-								</button>
+								</button></a>
 							</div>
-							<div class="btn-group pull-right">
+							<div class="btn-group pull-left">
 								<button data-toggle="dropdown"
 									class="btn btn-default dropdown-toggle">
-									Tools
+									工具
 									<i class="fa fa-angle-down"></i>
 								</button>
-								<ul class="dropdown-menu pull-right">
+								<ul class="dropdown-menu pull-left">
 									<li>
-										<a href="#">Print</a>
+										<a href="#">打印</a>
 									</li>
 									<li>
-										<a href="#">Save as PDF</a>
+										<a href="#">保存为PDF</a>
 									</li>
 									<li>
-										<a href="#">Export to Excel</a>
+										<a href="#">输出到Excel</a>
 									</li>
 								</ul>
 							</div>
@@ -68,6 +68,7 @@
 									<!-- 通过form设置显示的条数进行值传递 以及 搜索 (h路径)-->
 									<form action="/laravel/public/Admin/user/index" method="get">
 										<div id="editable-sample_length" class="dataTables_length">
+											--页--
 											<label>
 												<select name="num" size="1" aria-controls="editable-sample"
 													class="form-control xsmall">
@@ -85,7 +86,7 @@
 														@if((!empty($request['num'])) && $request['num'] ==
 														100) selected="selected" @endif>100</option>
 												</select>
-												records per page
+												--位--<button class="btn btn-primary"> 确定</button>
 											</label>
 										</div>
 								

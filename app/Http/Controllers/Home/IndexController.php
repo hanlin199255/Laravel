@@ -10,11 +10,20 @@ use App\Http\Controllers\Controller;
 
 use DB;
 
+use App\Http\Controllers\CateController;
+
 class IndexController extends Controller
 {
    public function getIndex()
    {
-   	 return view('welcome');
+   	$allcates = CateController::getCatesByPid(0);
+   	$user = DB::table('user')->get();
+   	$article = DB::table('article')
+   				->select('user.tname','article.*','cates.name as catename')
+   				->join('user','user.id','=','article.user_id')
+   				->join('cates','cates.id','=','article.cate_id')
+   				->where('rec',1)->orderby('id','desc')->limit(4)->get();
+   	 return view('welcome',['allcates'=>$allcates,'user'=>$user,'article'=>$article]);
    }
    
    public function getAboutus()

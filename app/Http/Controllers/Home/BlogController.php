@@ -115,7 +115,7 @@ class BlogController extends Controller
    					->select('article.*','user.tname','cates.name as catename')
    					->leftjoin('user','user.id','=','article.user_id')
    					->join('cates','cates.id','=','article.cate_id')
-   					->orderby('id','desc')->paginate(2);
+   					->orderby('id','desc')->paginate(5);
    		
    				
    		$cates = CateController::getTopcate();

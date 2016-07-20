@@ -75,11 +75,11 @@
                                     </div>
                                     <div class="clear"></div>
                                     <div class="postimg">
-                                        <img src="{{$v->pic}}" alt="" />
+                                        <img src="{{$v->pic}}" alt="" width="666" style="height: 222px" />
                                     </div>
        
                                     <div class="entry-content">
-										<p> {{$v->content}}.....</p>
+										<p> {{strip_tags(mb_substr($v->content,0,200))}}.....</p>
                                         <a href="{{url('/blog')}}/{{$v->id}}" class="more" style="color:#75c8b9">阅读本文  &rarr;</a>
                                     </div>
                                    

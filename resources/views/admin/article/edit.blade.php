@@ -50,33 +50,47 @@
                             <div class=" form">
                                 <form action="{{ url('/admin/article/update') }}" method="post" enctype="multipart/form-data" id="commentForm" class="cmxform form-horizontal adminex-form" novalidate="novalidate">
                                     <div class="form-group ">
-                                        <label class="control-label col-lg-2" for="cname" >文章标题 (required)</label>
-                                        <div class="col-lg-10">
+                                        <label class="control-label col-lg-2" for="cname" >文章标题</label>
+                                        <div class="col-lg-5">
                                             <input type="text" required minlength="2" name="title" id="cname" class=" form-control" value="{{ $arc->title}}">
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label col-lg-2" for="ccomment">文章描述 (required)</label>
-                                        <div class="col-lg-10">
+                                        <label class="control-label col-lg-2" for="ccomment">文章描述</label>
+                                        <div class="col-lg-5">
                                             <textarea required name="descr" id="ccomment" class="form-control ">{{ $arc->descr}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label col-lg-2" for="ccomment">文章内容 (required)</label>
+                                        <label class="control-label col-lg-2" for="ccomment">所属分类</label>
                                         <div class="col-lg-10">
-                                            <textarea required name="content" id="ccomment" class="form-control ">{!! $arc->content!!}</textarea>
-                                        </div>
-                                    </div>
-                                   <div class="form-group ">
-                                    <select class="col-lg-3 control-f" style="margin: 0 0 0 325px" name="cate_id">
+                                      <select class="col-lg-3 control-f"  name="cate_id">
                                         <option value="0" >  请选择 （默认父类）</option>
                                         @foreach($cates as $k=>$v)
                                         <option value="{{$v->id}}" @if($arc->cate_id == $v->id) selected @endif> {{$v->name}}</option>  
                                         @endforeach                           
                                 	</select> 
-                                	</div>
-                                <div class="form-group last">
-                                    <label class="control-label col-md-3">文章主图</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label col-lg-2" for="ccomment">文章内容</label>
+                                        <div class="col-lg-10">
+                                        <script type="text/javascript" charset="utf-8" src="{{url('/ueditor/utf8-php/ueditor.config.js')}}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{url('/ueditor/utf8-php/ueditor.all.min.js')}}"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="{{url('/ueditor/utf8-php/lang/zh-cn/zh-cn.js')}}"></script>
+  <script id="editor" type="text/plain"  style="width:750px;height:300px;" name="content">{{$arc->content}}</script>        
+<!--                                     <textarea required name="content" id="ccomment" class="form-control "></textarea> -->
+  								 <script type="text/javascript">
+    						//实例化编辑器
+  							  var ue = UE.getEditor('editor');
+
+									</script>
+                                             </div>
+                                    </div>
+                                  <div class="form-group ">
+                                        <label class="control-label col-lg-2" for="ccomment">文章封面</label>
                                     <div class="col-md-9">
                                         <div data-provides="fileupload" class="fileupload fileupload-new"><input type="hidden" name="id" value="{{ $arc->id}}">
                                             <div style="width: 200px; height: 150px;" class="fileupload-new thumbnail">
@@ -99,7 +113,8 @@
                                              Safari 和 Internet Explorer 10 浏览器                                             
                                              </span>
                                     </div>
-                                </div>
+                                    </div>
+                                
                                 {{ csrf_field() }} 
                             
                                     <div class="form-group">

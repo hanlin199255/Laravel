@@ -47,12 +47,17 @@ class ArticleController extends Controller
     public function getIndex(Request $request)
     {
         $article = DB::table('article')
-        ->where(function($query)use($request){
+       				 ->select('user.*','article.*','cates.name as catename')    
+   					  ->leftjoin('user',"user.id","=","article.user_id")
+   					  ->join('cates',"cates.id","=","article.cate_id")
+        				->where(function($query)use($request){
             if($request->input('keywords')){
-                $query->where('title','like','%'.$request->input('keywords').'%');
+                $query->where('title','like','%'.$request->input('keywords').'%')
+                		  ->orwhere('content','like','%'.$request->input('keywords').'%');
             }
         })
-        ->paginate($request->input('num',10));
+        ->paginate($request->input('num',5));
+        //dd($article);
         // //调用获取的方法
         // $cates = CateController::getCates();
         return view('admin.article.index',['article'=>$article, 'request'=>$request->all()]);
