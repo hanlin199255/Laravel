@@ -11,7 +11,8 @@
     
     <link href="{{ url('/home/css/animate-custom.css') }}" rel="stylesheet">
     
-    
+  <script type="text/javascript" src="http://ajax.useso.com/ajax/libs/jquery/1.7/jquery.js"></script>
+  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="{{ url('/home/jquery-1.8.3.min.js') }}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -49,11 +50,24 @@
                 <ul class="nav navbar-nav">
                   <li class="active"><a href="{{url('/home/index')}}">主页</a></li>
                   <li><a href="{{url('/home/index/aboutus')}}">关于我们</a></li>
-                  <li><a href="{{url('/home/center')}}">个人中心</a></li>   
+                  <li><a href="{{url('/center/')}}">个人中心</a></li>   
                   <li><a href="{{url('/list')}}">博客</a></li>
                   <li><a href="{{url('/cate/screen')}}">博文分类</a></li>
-                  <li><a href="{{url('/home/index/team')}}">NaN Team</a></li>
+                   <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NaN Team <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                   	  <li><a href="{{url('/home/index/team')}}">Team</a></li>
+                      <li><a href="{{url('/home/index/team1')}}">团队简历--HL</a></li>
+                      <li><a href="{{url('/home/index/team2')}}">团队简历--LT</a></li>
+                    </ul>
+                  </li>
+<!--                   <li><a href="{{url('/home/index/team')}}">NaN Team</a></li> -->
                   <li><a href="{{url('/home/index/contact')}}">联系我们</a></li>
+							@if(!session('id'))
+							<li><a href="{{url('/login')}}">[登录 or 注册]</a></li>
+							@else
+						<li><a href="{{url('/center/')}}">欢迎您{{session('username')}}</a> <a>退出</a></li>
+							@endif
                 </ul>
                 
               </div><!-- /.navbar-collapse -->
@@ -68,7 +82,7 @@
 								<a href="{{url('/home/index/aboutus')}}">关于我们</a>
 							</li>
 							<li>
-								<a href="{{url('/home/center')}}">个人中心</a>
+								<a href="{{url('/center')}}">个人中心</a>
 							</li>
 							<li>
 								<a href="{{url('/list')}}">博客</a>
@@ -76,12 +90,26 @@
                             <li>
 								<a href="{{url('/cate/screen')}}">博文分类</a>
 							</li>
-                            <li>
-								<a href="{{url('/home/index/team')}}">NaN Team</a>
-							</li>
+                   <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NaN Team <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                   	  <li><a href="{{url('/home/index/team')}}">Team</a></li>
+                      <li><a href="{{url('/home/index/team1')}}">团队简历--HL</a></li>
+                      <li><a href="{{url('/home/index/team2')}}">团队简历--LT</a></li>
+                    </ul>
+                  </li>
+							
+<!--                             <li> -->
+<!-- 								<a href="{{url('/home/index/team')}}">NaN Team</a> -->
+<!-- 							</li> -->
                             <li>
 								<a href="{{url('/home/index/contact')}}">联系我们</a>
 							</li>
+							@if(!session('id'))
+							<li><a href="{{url('/login')}}">[登录 or 注册]</a></li>
+							@else
+							<li>[<a href="{{url('/center/')}}">欢迎您{{session('username')}} </a>| <a href="{{url('/logout')}}">退出</a>]</li>
+							@endif
 						</ul>
 					</div><!-- /dl-menuwrapper -->  
             
@@ -133,7 +161,7 @@
     
     	<div class="services">
         	<div class="services-header">
-                <h2>服务</h2>
+                <h2>分类</h2>
                 <p>我们明白您的故事是独一无二的，这就是为什么我们的微型博客和解决方案是为每个客户单独制作。</p>
             </div>
             
@@ -143,7 +171,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     	<div class="services-box services-box-2 pull-right">
                         	<div class="row">	
-                        	<a href="#">
+                        	<a href="{{url('/list')}}?cate={{$v->id}}">
                             	<div class="col-lg-3">
                                 	<img src="{{$v->pic }}" alt="s-desktop" />
                                 </div>
@@ -166,7 +194,7 @@
     </div><!-- End container -->
     
    <div class="gellary">
-   		<h2>作品展示</h2>
+   		<h2>知名博主</h2>
         
    </div>
    
@@ -181,7 +209,7 @@
         <li class="als-item">
         <div class="gellary-item item">
         	<a href="{{url('/list')}}?user={{$val->id}}">
-            <img src="{{$val->avartar}}"  height="246" width="389"/>
+            <img src="{{$val->avatar}}"  height="246" width="389"/>
             <div class="hover"></div>
             </a>
             <h3>{{$val->tname}}</h3>
@@ -189,7 +217,7 @@
         @else
         <div class="gellary-item item">
             <a href="{{url('/list')}}?user={{$val->id}}">
-            <img src="{{$val->avartar}}" height="246" width="389"/>
+            <img src="{{$val->avatar}}" height="246" width="389"/>
             <div class="hover"></div>
             </a>
             <h3>{{$val->tname}}</h3>
@@ -300,7 +328,7 @@
                         
                         <h1>头脑风暴</h1>
                         
-                        <p>一批纺织样品把摊放在桌上,Samsa是一个旅行推销员,上面挂着一幅画,他最近的一本带插图的杂志和安置在一个镀金的框架。</p>
+                        <p>努力和效果之间，永远有这样一段距离。成功和失败的唯一区别是，你能不能坚持挺过这段无法估计的距离。拿出键盘，来和我们分享出你的每一天。</p>
                         
                     </div>
                 </div>
@@ -311,7 +339,7 @@
                         
                         <h1>计划</h1>
                         
-                        <p>一批纺织样品把摊放在桌上,Samsa是一个旅行推销员,上面挂着一幅画,他最近的一本带插图的杂志和安置在一个镀金的框架。</p>
+                        <p>生活就是日起日落！熬过了黑夜就一定会有朝霞……</p>
                         
                     </div>
                 </div>
@@ -322,7 +350,7 @@
                         
                         <h1>Designing</h1>
                         
-                        <p>一批纺织样品把摊放在桌上,Samsa是一个旅行推销员,上面挂着一幅画,他最近的一本带插图的杂志和安置在一个镀金的框架。</p>
+                        <p>人生的每一笔经历，都在书写你的简历。原本你以为微不足道的事情，回头看的时候，都有着无法细数的刻度。自己拼出来的东西，和别人送到嘴边的东西，意义和珍惜的程度都大为不同。</p>
                         
                     </div>
                 </div>
@@ -333,7 +361,7 @@
                         
                         <h1>Deploy</h1>
                         
-                        <p>一批纺织样品把摊放在桌上,Samsa是一个旅行推销员,上面挂着一幅画,他最近的一本带插图的杂志和安置在一个镀金的框架。</p>
+                        <p>一起共勉，互相支持，不放弃对自我的修行，我们终究会创造属于自己的生命奇迹，加油程序猿！加油攻城狮！</p>
                         
                     </div>
                 </div>
@@ -454,26 +482,37 @@
    
    </div><!--  End recent-post  -->
    
-   
-   <div class="subscribe">
+      <div class="subscribe">
    
    	<div class="container">
     	<h1>你知道吗？输入邮箱可以订阅我们的文章</h1>
         
-        <form>
+        <form method="post" action="{{url('/subscribe')}}"> 
+        @if(session('info'))
+            <script type="text/javascript">
+                alert("{{session('info')}}");
+            </script>
+        @endif
+        @if(count($errors)>0)
+            <script type="text/javascript">
+                alert("{{$errors->first()}}");
+            </script>
+        @endif
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
-                	<input class="input-lg" type="text" placeholder="Enter email">
+                	<input class="input-lg" type="text" name="email" placeholder="请输入邮箱">
+                    {{csrf_field()}}
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                	<button class="btn-effect" type="submit">订阅</button>
+                	<button class="btn-effect" type="submit" id="subscribe">订阅</button>
                 </div>
             </div>
         </form>
         
     </div>
-   
+
    </div><!-- End subscribe -->
+   
    <!-- 内容结束 -->
 @show
 @section('footer')
@@ -485,12 +524,12 @@
         	<div class="row">
             	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 	<div class="address">
-                    	<h3>Get in touch</h3>
+                    	<h3>取得联系</h3>
                         
                         <ul>
-                        	<li><a href="#">E: support@brightlight.com.bd</a></li>
-                            <li><a href="#">P: 0418 281 810</a></li>
-                            <li><a href="#">W: www.brightlight.com.bd</a></li>
+                        	<li><a href="#">E: NaN@163.com</a></li>
+                            <li><a href="#">P: 010 0000077</a></li>
+                            <li><a href="#">W: www.NaNblog.com</a></li>
                         </ul>
                         
                     </div>

@@ -108,7 +108,7 @@ class ArticleController extends Controller
             $data['pic'] = '/laravel/public'.trim(Config::get('app.upload_dir').$pathname,'.');
            
         }
-        $data['user_id'] = 1;
+        $data['user_id'] = session('id');
         //返回数据
         return $data;
     }

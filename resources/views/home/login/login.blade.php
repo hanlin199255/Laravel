@@ -23,7 +23,7 @@
 
         <div class="container">
 
-            <form class="form-signin" action="{{ url('login') }}" method="post">
+            <form class="form-signin" action="{{ url('/login') }}" method="post">
                 <div class="form-signin-heading text-center">
                     <h1 class="sign-title">登录</h1>
                     <img src="{{ url('/admincss/images/login-logo.png') }}" alt=""/>
@@ -50,10 +50,24 @@
                     </div>
                 </div>
                 @endif
+                @if(session('error'))
+         <section class="panel">
+                <div class="panel-body">
+                        <!--statistics start-->
+                    <div class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <strong></strong>{{session('error')}}
+                    </div>
+                </div>
+            </section>
+
+        @endif      
                 <div class="login-wrap">
-                    <input type="text" class="form-control" placeholder="请输入账号" autofocus name="username"  value="{{$data["uname"] or ''}}">
-                    <input type="password" class="form-control" placeholder="请输入密码" name="password"  value="{{$data["password"] or ''}}">
-                    <input type="text"  style="width:120px" class="form-control" placeholder="请输入验证码" name="code"  value="{{$data["code"] or ''}}"><img src="{{url('/home/login/Vcode').'/'.rand()}}"  style="cursor:pointer" align="top" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" >
+                    <input type="text" class="form-control" placeholder="请输入账号" autofocus name="username"  value="{{$data['username'] or ''}}">
+                    <input type="password" class="form-control" placeholder="请输入密码" name="password"  value="{{$data['password'] or ''}}">
+                    <input type="text"  style="width:120px" class="form-control" placeholder="请输入验证码" name="vcode"  value="{{$data['vcode'] or ''}}"><img src="{{url('/home/login/Vcode').'/'.rand()}}"  style="cursor:pointer" align="top" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" >
                     {{csrf_field()}}
                     <button class="btn btn-lg btn-login btn-block" type="submit">
                         <i class="fa fa-check"></i>
@@ -61,14 +75,14 @@
 
                     <div class="registration">
                         没有账号？
-                        <a class="" href="{{ url('register') }}">
+                        <a class="" href="{{ url('/register') }}">
                             注册
                         </a>
                     </div>
                     <label class="checkbox">
                         <input type="checkbox" name="remem_me" value="1"> 记住我
                         <span class="pull-right">
-                            <a data-toggle="modal" href="#myModal"> 忘记密码?</a>
+                            <a data-toggle="modal" href="{{url('/forget')}}"> 忘记密码?</a>
 
                         </span>
                     </label>

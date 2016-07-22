@@ -16,9 +16,7 @@
 
     <!-- CSS
   ================================================== -->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.useso.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.useso.com/css?family=Nova+Square' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="{{url('/home/styles/style.css')}}" />
     <link rel="stylesheet" href="{{url('/home/styles/inner.css')}}" />    
     <link rel="stylesheet" href="{{url('/home/styles/color.css')}}" />
@@ -31,8 +29,7 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" src="http://ajax.useso.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{url('/home/js/bootstrap.min.js')}}"></script>
 	
     <!-- Responsive menu -->

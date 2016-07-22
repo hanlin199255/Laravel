@@ -319,7 +319,7 @@
                     </li>
                     <li>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="/laravel/public/upload/avartar/user-avatar.png" alt="" />
+                            <img src="/laravel/public/upload/avatar/user-avatar.png" alt="" />
                           	   欢迎你：<strong>{{Session::get('username')}}</strong>
                             <span class="caret"></span>
                         </a>

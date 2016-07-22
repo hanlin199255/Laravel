@@ -9,13 +9,13 @@
 
   <title>404 Page</title>
 
-  <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/style-responsive.css" rel="stylesheet">
+  <link href="{{url('/admincss/css/style.css')}}" rel="stylesheet">
+  <link href="{{url('/admincss/css/style-responsive.css')}}" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="js/html5shiv.js"></script>
-  <script src="js/respond.min.js"></script>
+  <script src="{{url('/admincss/js/html5shiv.js')}}"></script>
+  <script src="{{url('/admincss/js/respond.min.js')}}"></script>
   <![endif]-->
 </head>
 
@@ -25,20 +25,20 @@
     <div class="container ">
 
         <section class="error-wrapper text-center">
-            <h1><img alt="" src="/images/404-error.png"></h1>
+            <h1><img alt="" src="{{url('/admincss/images/404-error.png')}}"></h1>
             <h2>页面未找到</h2>
             <h3>We Couldn’t Find This Page</h3>
-            <a class="back-btn" href="/"> 跟我回家吧~</a>
+            <a class="back-btn" href="{{url('/home/index')}}"> 跟我回家~</a>
         </section>
 
     </div>
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="/js/jquery-1.10.2.min.js"></script>
-<script src="/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/modernizr.min.js"></script>
+<script src="{{url('/admincss/js/jquery-1.10.2.min.js')}}"></script>
+<script src="{{url('/admincss/js/jquery-migrate-1.2.1.min.js')}}"></script>
+<script src="{{url('/admincss/js/bootstrap.min.js')}}"></script>
+<script src="{{url('/admincss/js/modernizr.min.js')}}"></script>
 
 
 <!--common scripts for all pages-->

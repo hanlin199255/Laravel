@@ -36,6 +36,14 @@ class IndexController extends Controller
    	return view('home.team');
    }
    
+   public function getTeam1()
+   {
+   	return view('home.team1');
+   }
+   public function getTeam2()
+   {
+   	return view('home.team2');
+   } 
    public function getContact()
    {
    	return view('home.contact');

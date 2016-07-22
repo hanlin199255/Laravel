@@ -47,7 +47,8 @@
                               </div>
                               @endif               
             <input type="text" name="username" class="form-control" placeholder="请输入用户名" autofocus >
-            <input type="password" name="password" class="form-control" placeholder="请输入用户密码">           
+            <input type="password" name="password" class="form-control" placeholder="请输入用户密码">
+            <input type="hidden" name="redirect" value="{{ $redirect or ' '}}">           
 			{{csrf_field()}}
 
             <button class="btn btn-lg btn-login btn-block" type="submit">

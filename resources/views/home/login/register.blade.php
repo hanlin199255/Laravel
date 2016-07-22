@@ -75,9 +75,7 @@
                     <input type="text" autofocus="" placeholder="请输入您的账号" class="form-control" name="username" value="">
                     <input type="password" placeholder="请输入您的密码" class="form-control" name="password" value="">
                     <input type="password" placeholder="请再次输入您的密码" class="form-control" name="repassword" value="">
-                    <input type="text" style="width:120px" class="form-control" placeholder="请输入验证码" name="vcode"  value="{{$data["code"] or ''}}"><img src="{{url('/home/login/Vcode').'/'.rand()}}"  style="cursor:pointer" align="top" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" >
-                    <p>请在下方输入用户个人信息(选填)</p>
-                    <input type="text" autofocus="" placeholder="昵称" class="form-control">
+                   
                     <div class="radios">
                         <label for="radio-01" class="label_radio col-lg-6 col-sm-6">
                             <input type="radio" checked="" value="man" id="radio-01" name="sex"> 先生
@@ -86,11 +84,11 @@
                             <input type="radio" value="women" id="radio-02" name="sex"> 小姐
                         </label>
                     </div>
-                    <input type="text" autofocus="" placeholder="您的地址" class="form-control" name="address">
                     <input type="text" autofocus="" placeholder="您的邮箱[用于找回密码]" class="form-control" name="email">
                     {{ csrf_field()}}
+                     <input type="text" style="width:120px" class="form-control" placeholder="请输入验证码" name="vcode"  value="{{$data["code"] or ''}}"><img src="{{url('/home/login/Vcode').'/'.rand()}}"  style="cursor:pointer" align="top" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" >
                     <label class="checkbox">
-                        <input type="checkbox" value="agree this condition">我已经阅读并且同意 <a href="">《 NaN用户协议》</a>
+                        <input type="checkbox"  name='agreement' value="agree this condition">我已经阅读并且同意 <a href="">《 NaN用户协议》</a>
                     </label>
                     <button type="submit" class="btn btn-lg btn-login btn-block">
                         <i class="fa fa-check"></i>
@@ -98,7 +96,7 @@
 
                     <div class="registration">
                         已有账号
-                        <a href="{{url('login')}}" class="">
+                        <a href="{{url('/login')}}" class="">
                             登录
                         </a>
                     </div>

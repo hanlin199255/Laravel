@@ -205,5 +205,6 @@ return [
     ],
 
     	'webname' => 'NaN码农学院',
-		'upload_dir' => './upload/'.date('Ymd').'/'
+		'upload_dir' => './upload/'.date('Ymd').'/',
+		'tp'=>'/laravel/public/'
 ];

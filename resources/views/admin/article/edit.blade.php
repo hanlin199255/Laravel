@@ -80,7 +80,7 @@
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="{{url('/ueditor/utf8-php/lang/zh-cn/zh-cn.js')}}"></script>
-  <script id="editor" type="text/plain"  style="width:750px;height:300px;" name="content">{{$arc->content}}</script>        
+  <script id="editor" type="text/plain"  style="width:750px;height:300px;" name="content">{!!$arc->content!!}</script>        
 <!--                                     <textarea required name="content" id="ccomment" class="form-control "></textarea> -->
   								 <script type="text/javascript">
     						//实例化编辑器

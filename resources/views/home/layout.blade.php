@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{{config('app.webname')}}</title>
 
-<link href='http://fonts.useso.com/css?family=Oxygen|Lato:300|Open+Sans:300' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.useso.com/css?family=Oxygen|Lato:300|Open+Sans:300' rel='stylesheet' type='text/css'> -->
 
 	<link href="{{url('/home/css/bootstrap.min.css')}}" rel="stylesheet">
     
@@ -17,7 +17,6 @@
      <script src="{{ url('/home/jquery-1.8.3.min.js') }}"></script>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" src="http://ajax.useso.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{url('/home/js/bootstrap.min.js')}}"></script>
 	
@@ -43,7 +42,7 @@
     <div class="container">
     	<div class="header pull-left">
         	
-            <a href="index.html" class="logo"><img src="{{url('/home/img/logo.png')}}" alt="logo" /></a>
+            <a href="{{url('/home/index')}}" class="logo"><img src="{{url('/home/img/logo.png')}}" alt="logo" /></a>
             
             <nav class="navbar navbar-default pull-right" role="navigation">
  
@@ -52,11 +51,24 @@
                 <ul class="nav navbar-nav">
                   <li class="active"><a href="{{url('/home/index')}}">主页</a></li>
                   <li><a href="{{url('/home/index/aboutus')}}">关于我们</a></li>
-                  <li><a href="{{url('/home/center')}}">个人中心</a></li>   
+                  <li><a href="{{url('/center')}}">个人中心</a></li>   
                   <li><a href="{{url('/list')}}">博客</a></li>
                   <li><a href="{{url('/cate/screen')}}">博文分类</a></li>      
-                  <li><a href="{{url('/home/index/team')}}">NaN Team</a></li>
+                   <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NaN Team <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                   	  <li><a href="{{url('/home/index/team')}}">Team</a></li>
+                      <li><a href="{{url('/home/index/team1')}}">团队简历--HL</a></li>
+                      <li><a href="{{url('/home/index/team2')}}">团队简历--LT</a></li>
+                    </ul>
+                  </li>
+<!--                   <li><a href="{{url('/home/index/team')}}">NaN Team</a></li> -->
                   <li><a href="{{url('/home/index/contact')}}">联系我们</a></li>
+                  							@if(!session('id'))
+							<li><a href="{{url('/login')}}">[登录 or 注册]</a></li>
+							@else
+							<li><a href="{{url('/center/')}}">欢迎您{{session('username')}}</a></li>
+							@endif
                 </ul>
                 
               </div><!-- /.navbar-collapse -->
@@ -72,7 +84,7 @@
 								<a href="{{url('/home/index/us')}}">关于我们</a>
 							</li>
 							<li>
-							<a href="{{url('/home/center')}}">个人中心</a>
+							<a href="{{url('/center')}}">个人中心</a>
 							</li>   
 							<li>
 								<a href="{{url('/list')}}">博客</a>
@@ -80,13 +92,25 @@
                             <li>
 								<a href="{{url('/cate/screen')}}">博文分类</a>
 							</li>
-							
-                            <li>
-								<a href="{{url('/home/index/team')}}">NaN Team</a>
-							</li>
+                   <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NaN Team <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                   	  <li><a href="{{url('/home/index/team')}}">Team</a></li>
+                      <li><a href="{{url('/home/index/team1')}}">团队简历&HL</a></li>
+                      <li><a href="{{url('/home/index/team2')}}">团队简历&&LT</a></li>
+                    </ul>
+                  </li>
+<!--                             <li> -->
+<!-- 								<a href="{{url('/home/index/team')}}">NaN Team</a> -->
+<!-- 							</li> -->
                             <li>
 								<a href="{{url('/home/index/contact')}}">联系我们</a>
 							</li>
+						@if(!session('id'))
+							<li><a href="{{url('/login')}}">[登录 or 注册]</a></li>
+							@else
+							<li><a href="{{url('/center/')}}">欢迎您{{session('username')}}</a></li>
+							@endif
 						</ul>
 					</div><!-- /dl-menuwrapper -->
 
@@ -125,12 +149,12 @@
         	<div class="row">
             	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 	<div class="address">
-                    	<h3>Get in touch</h3>
+                    	<h3>取得联系</h3>
                         
                         <ul>
-                        	<li><a href="#">E: support@brightlight.com.bd</a></li>
-                            <li><a href="#">P: 0418 281 810</a></li>
-                            <li><a href="#">W: www.brightlight.com.bd</a></li>
+                        	<li><a href="#">E: NaN@163.com</a></li>
+                            <li><a href="#">P: 010 0000077</a></li>
+                            <li><a href="#">W: www.NaNblog.com</a></li>
                         </ul>
                         
                     </div>
@@ -138,7 +162,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 	<div class="address">
-                    	<h3>Our Location</h3>
+                    	<h3>公司地址</h3>
                         
                         <ul>
                         	<li>Bright Light</li>
@@ -151,7 +175,7 @@
                 
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 	<div class="address">
-                    	<h3>Free Support</h3>
+                    	<h3>免费服务</h3>
                         
                         <ul>
                         	<li>Call Now</li>
