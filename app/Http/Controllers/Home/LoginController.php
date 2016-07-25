@@ -186,7 +186,7 @@ class LoginController extends Controller
         //发送邮件找回
         $this->sendFoundMail($user->email,$user->id,$user->token);
         //执行跳转
-        return redirect()->with('info','找回密码邮件已经发送到你的邮箱中，请注意查收');
+        return redirect('/')->with('info','找回密码邮件已经发送到你的邮箱中，请注意查收');
      }
 
      private function sendFoundMail($email,$id,$token)
@@ -195,7 +195,6 @@ class LoginController extends Controller
         Mail::send('mail.found', ['email'=>$email,'id'=>$id,'token'=>$token], function ($message) use($email) {
             $message->to($email)->subject('找回密码提醒邮件'); //to 用来接受收件人的地址。subject 用来接受主题的
         });
-        return redirect()->with('info','找回密码邮件已经发送到您的邮箱，请注意查收');
      }
 
      //重置密码表单

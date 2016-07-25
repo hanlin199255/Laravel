@@ -67,7 +67,7 @@
                   							@if(!session('id'))
 							<li><a href="{{url('/login')}}">[登录 or 注册]</a></li>
 							@else
-							<li><a href="{{url('/center/')}}">欢迎您{{session('username')}}</a></li>
+								<li><a href="{{url('/logout')}}">退出</a></li>
 							@endif
                 </ul>
                 
@@ -109,7 +109,7 @@
 						@if(!session('id'))
 							<li><a href="{{url('/login')}}">[登录 or 注册]</a></li>
 							@else
-							<li><a href="{{url('/center/')}}">欢迎您{{session('username')}}</a></li>
+								<li><a href="{{url('/logout')}}">退出</a></li>
 							@endif
 						</ul>
 					</div><!-- /dl-menuwrapper -->
